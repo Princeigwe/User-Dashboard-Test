@@ -58,7 +58,7 @@ This repository contains a RESTful API that facilitates user registration, login
   }
 
 ### Protected Endpoint
-- **Endpoint:** `GET /api/v1/auth/dashboard  -H Authorization: Bearer jwt-token` 
+- **Endpoint:** `GET /api/v1/dashboard  -H Authorization: Bearer jwt-token` 
 - **Response:**
   ```json
   {
