@@ -2,11 +2,13 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 const crypto = require('crypto')
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(
-        private usersService: UsersService
+        private usersService: UsersService,
+        private jwtService: JwtService
     ) { }
     
     async registerUser(email: string, username: string, password: string) {
@@ -26,5 +28,12 @@ export class AuthService {
         else {
             throw new HttpException("Invalid Credentials", HttpStatus.BAD_REQUEST)
         }
+    }
+
+
+    async createJwtToken(userId: any) {
+        const payload = { userId: userId }
+        const token = this.jwtService.sign(payload)
+        return token
     }
 }
