@@ -28,4 +28,13 @@ export class UsersService {
         }
         return user
     }
+
+
+    async getUserByPayloadUserID(id: string) {
+        const user = await this.userModel.findById(id)
+        if (!user) {
+            throw new HttpException("Invalid Payload", HttpStatus.BAD_REQUEST)
+        }
+        return user
+    }
 }
